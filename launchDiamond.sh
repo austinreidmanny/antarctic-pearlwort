@@ -7,11 +7,11 @@
 # CUSTOMIZE THIS SECTION, CHANGING THE NAMES ON THE RIGHT SIDE OF THE EQUAL SIGN, BUT LEAVE THE QUOTATION MARKS 
 # FOR TIPS, LOOKS AT THE "NOTES" SECTION BELOW
 
-PATH_TO_DATABASE="path/to/nr"         # leave the nr, change the directories. example: "~/Desktop/nr"
-PATH_TO_QUERY_FILE="path/to/input_query.txt"   # example: "~/Desktop/input_query.fasta"
-OUTPUT_FILE="./diamond_results.txt"
-PATH_TO_TAXONMAP="path/to/prot.accession2taxid.gz"
-PATH_TO_TAXON_NODES="path/to/nodes.dmp"
+PATH_TO_DATABASE="nr"        # leave the nr, change the directories. example: "~/Desktop/nr"
+PATH_TO_QUERY_FILE="c_quitensis_transcriptome.fasta"   # example: "~/Desktop/input_query.fasta"
+OUTPUT_FILE="diamond_results.txt"
+PATH_TO_TAXONMAP="prot.accession2taxid.gz"
+PATH_TO_TAXON_NODES="nodes.dmp"
 E_VALUE="10"
 BLOCK_SIZE="1.7"
 
@@ -35,5 +35,6 @@ BLOCK_SIZE="1.7"
 # If DIAMOND fails because of insufficient memory, change to --block-size 1.5    or lower.
 
 date > diamond.log
-diamond blastx --sensitive -d $PATH_TO_DATABASE -q $PATH_TO_QUERY_FILE -o $OUTPUT_FILE -f 102 --taxonmap $PATH_TO_TAXONMAP --taxonnodes $PATH_TO_TAXON_NODES --max-target-seqs 1 --max-hsps 1 --top 0 --block-size $BLOCK_SIZE -e $E_VALUE
+diamond blastx --sensitive -d $PATH_TO_DATABASE -q $PATH_TO_QUERY_FILE -o $OUTPUT_FILE -f 102 --taxonmap $PATH_TO_TAXONMAP \
+--taxonnodes $PATH_TO_TAXON_NODES --max-target-seqs 1 --max-hsps 1 --top 0 --block-size $BLOCK_SIZE -e $E_VALUE
 date >> diamond.log
